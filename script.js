@@ -19,8 +19,7 @@ document.getElementById("seznamBesed").innerHTML = narediSeznamBesed(
 );
 
 function narediSeznamBesed(seznam, funkcijaZaStolpec) {
-  let vrnitev =
-    "<tbody><tr style=\'position: sticky; top: -1.5px; background-color: white;\'><td><b>Infitive</b><br><i>nedoločnik</i></td><td><b>Past Tense</b><br><i>preteklik</i></td><td><b>Past Participle</b><br><i>pretekli deležnik</i></td><td><b></b><br><i>slovenski prevod</i></td></tr></tbody>";
+  let vrnitev = `<tbody><tr style='position: sticky; top: -1.5px; background-color: white;'>${Slovar[lang].casi}</tr></tbody>`;
   for (let vrstica = 0; vrstica < seznam.length; vrstica++) {
     vrnitev += "<tr>";
     let poln = funkcijaZaStolpec();
@@ -106,6 +105,7 @@ function enako(a, b) {
   if (!a || !b) return false;
   let clean = function(str) {
     return str
+      .trim()
       .toLowerCase()
       .replace(/ä/g, 'ae')
       .replace(/ö/g, 'oe')

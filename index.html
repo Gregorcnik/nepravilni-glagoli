@@ -31,11 +31,7 @@
   <body id="body">
 
     <!-- "naprej" button -->
-    <div style="display: none; right: 60px;" class="fixBtnRight" id="naprej" onclick="
-      if (t[1] == 0) {i = dodajI(i);}
-      document.getElementById('seznamBesed').innerHTML = narediSeznamBesed([a[i]], izberiStolpec);
-      prikazi('preveri');">
-
+    <div style="visibility: hidden;" class="fixBtnRight" id="naprej">
       <p class="tooltiptext">naprej</p>
       <span class="material-symbols-rounded btnIcon">
         arrow_right_alt
@@ -43,19 +39,13 @@
     </div>
 
     <!-- "preveri" button -->
-    <div id="preveri" class="fixBtnRight" onclick="t = preveri([a[i]]); pravilno += t[0]; vseTocke += (t[1]+t[0]); nastaviStevecTock(pravilno, vseTocke); skrij('preveri');" style="right: 60px;">
+    <div id="preveri" class="fixBtnRight">
       <p class="tooltiptext">preveri</p>
       <span class="material-icons btnIcon">&#xe5ca;</span>
     </div>
 
-    <!-- "resi" button -->
-    <div id="resi" class="fixBtnRight" onclick="resi([a[i]]); preveri([a[i]]); skrij('preveri');" style="background-color: darkOrange">
-      <p class="tooltiptext">reši</p>
-      <span class="material-icons btnIcon">&#xe8fd;</span>
-    </div>
-
     <!-- "izpisi vse" button -->
-    <div id="izpisiVse" class="fixBtnLeft" onclick="document.getElementById('seznamBesed').innerHTML = narediSeznamBesed(a, function f() {return 3;}); resi(a); preveri(a); skrij('preveri');" style="background-color: darkblue">
+    <div id="izpisiVse" class="fixBtnLeft" style="background-color: darkblue">
       <p class="tooltiptext">izpiši vse</p>
       <span class="material-icons btnIcon">&#xe865;</span>
     </div>
@@ -100,7 +90,7 @@
 
           <!-- Modal footer -->
           <div class="modal-footer bg-light">
-            <div class = "row">
+            <div class = "row" style="width: 100%;">
               <div class = "col-sm-9"><small style="float: left;">Stran izdelal Gregor Potočnik.</small></div>
               <div  class="col-sm-3 pt-2"><button type="button" class="w-100 btn btn-success" style="float: right" data-bs-dismiss="modal" onclick="stStolpca = nastaviStStolpec()">Shrani</button></div>
             </div>
@@ -110,14 +100,13 @@
       </div>
     </div>
 
-    <h1 class = "pt-3 pt-3 pb-2">Program za preverjanje angleških nepravilnih glagolov</h1>
-    <p>Izpolni prazne okvirčke. Pri prevodu je več pravilnih možnosti, zato se prevod ne točkuje.
-      V vadnici preveri, če si pravilno prevedel. Kjer sta možna dva odgovora, zapiši le enega. Pri
-      glagolih z dvema oblikama (naprimer 'dreamt/dreamed') zapiši samo tisto obliko, ki se konča s t.<br>
-    </p>
+    <h1 class = "pt-3 pt-3 pb-2" id="naslov"></h1>
+    <p id="opis"></p>
+    <br>
 
     <table id="seznamBesed"></table>
 
+    <script src="slovar.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

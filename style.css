@@ -91,9 +91,10 @@ tr:nth-child(even) {
   transform: translate(-50%, -50%);
 }
 
-input{
+#prostorcek{
   width: 100%;
   height: 30px;
+  line-height: 30px;
   border: solid 1px lightgray;
   background-color: rgba(0, 0, 0, 0);
   font-size: medium;
@@ -101,7 +102,7 @@ input{
   border-radius: 0;
   padding: 0 8px 0 8px;
 }
-input:focus{
+#prostorcek:focus{
   outline: 0;
 }
 

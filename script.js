@@ -9,7 +9,13 @@ let a = premesaj(Slovar[lang].glagoli);
 let pravilno = 0;
 let vseTocke = 0;
 let trenutInd = 0;
-let stStolpca = -1; //-1 means random, 0 means first column itd.
+
+let stStolpca; //-1 means random, 0 means first column itd.
+let ponavljajNapacno;
+nastaviPonavljajNapacno();
+nastaviStStolpca();
+
+let zadnjaPravilna = true;
 
 document.getElementById("seznamBesed").innerHTML = narediSeznamBesed(
   [a[0]],
@@ -46,13 +52,13 @@ function preveri(seznamResitev) {
   for (let stolpec = 0; stolpec < stolpci.length; stolpec++) {
     let prostorcek = stolpci[stolpec].children[0];
     if (prostorcek != undefined) {
-      if (enako(prostorcek.innerHTML, seznamResitev[stolpec])) {
+      if (enako(prostorcek.innerText, seznamResitev[stolpec])) {
         prostorcek.style.backgroundColor = "lightgreen";
         prav += 1;
       } else {
         prostorcek.style.backgroundColor = stolpec == 3 ? "orange" : "rgb(255, 102, 102)";
         if (stolpec != 3) narobe += 1;
-        prostorcek.innerHTML = `<s>${prostorcek.innerHTML}</s> ${seznamResitev[stolpec]}`;
+        prostorcek.innerHTML = `<s>${prostorcek.innerText.trim()}</s> ${seznamResitev[stolpec]}`;
       }
       prostorcek.setAttribute("contenteditable", "false");
     }
@@ -65,13 +71,14 @@ function onPreveri() {
   t = preveri(a[trenutInd]);
   pravilno += t[0]; 
   vseTocke += (t[1]+t[0]);
+  zadnjaPravilna = t[1] == 0;
   nastaviStevecTock(pravilno, vseTocke);
   skrij('preveri');
   prikazi('naprej');
 }
 
 function onNaprej() {
-  trenutInd = (trenutInd+1) % a.length;
+  if (!ponavljajNapacno || zadnjaPravilna) trenutInd = (trenutInd+1) % a.length;
   document.getElementById('seznamBesed').innerHTML = narediSeznamBesed([a[trenutInd]], function(ind) {
     if (stStolpca == -1) return nakljucno(4) - 1;
     else return stStolpca;
@@ -136,9 +143,12 @@ function nastaviStevecTock(p, v) {
 function prikazi(id) { document.getElementById(id).style.visibility = "visible"; }
 function skrij(id) { document.getElementById(id).style.visibility = "hidden"; }
 
-function nastaviStStolpec() {
+function nastaviStStolpca() {
   let moznosti = ["naključno", "nedoločnik", "preteklik", "pretekli deležnik", "prevod"];
-  return moznosti.indexOf(document.getElementById("set1").value) -1;
+  stStolpca = moznosti.indexOf(document.getElementById("set1").value) -1;
+}
+function nastaviPonavljajNapacno() {
+  ponavljajNapacno = document.getElementById("repeatFailed").checked;
 }
 
 function toggleTheme(element) {

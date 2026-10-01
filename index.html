@@ -86,13 +86,21 @@
               </label>
             </div>
 
+            <div class="pt-3" style="display: flex; align-items: center; justify-content: space-between;">
+              <span>Ponavljaj napačno rešeno vprašanje</span>
+              <label class="switch">
+                <input type="checkbox" id="repeatFailed" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+
           </div>
 
           <!-- Modal footer -->
           <div class="modal-footer bg-light">
             <div class = "row" style="width: 100%;">
               <div class = "col-sm-9"><small style="float: left;">Stran izdelal Gregor Potočnik.</small></div>
-              <div  class="col-sm-3 pt-2"><button type="button" class="w-100 btn btn-success" style="float: right" data-bs-dismiss="modal" onclick="stStolpca = nastaviStStolpec()">Shrani</button></div>
+              <div  class="col-sm-3 pt-2"><button type="button" class="w-100 btn btn-success" style="float: right" data-bs-dismiss="modal" onclick="nastaviStStolpca(); nastaviPonavljajNapacno();">Shrani</button></div>
             </div>
           </div>
 

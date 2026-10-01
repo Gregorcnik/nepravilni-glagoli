@@ -126,7 +126,7 @@ function enako(a, b) {
 }
 
 function premesaj(seznam) {
-  let vrnitev = seznam;
+  let vrnitev = [...seznam];
   let l = seznam.length;
   for (let i = 0; i < l; i++) {
     let r = nakljucno(seznam.length) - 1;

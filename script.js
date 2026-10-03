@@ -53,6 +53,7 @@ function preveri(seznamResitev) {
     let prostorcek = stolpci[stolpec].children[0];
     if (prostorcek != undefined) {
       if (enako(prostorcek.innerText, seznamResitev[stolpec])) {
+        if (prostorcek.innerText.trim().toLowerCase() != seznamResitev[stolpec].trim().toLowerCase()) prostorcek.innerHTML += ` (${seznamResitev[stolpec]})`;
         prostorcek.style.backgroundColor = "lightgreen";
         prav += 1;
       } else {
